@@ -19,3 +19,16 @@ Route::get('/', function()
 Route::get('welcome/sayhello', 'WelcomeController@sayhello');
 
 Route::get('greeting/sayhi', 'GreetingController@sayhi');
+
+Route::resource('projects', 'ProjectsController');
+
+
+//Route::resource('tasks', 'TasksController');
+Route::resource('projeccts.tasks', 'TasksController');
+
+Route::bind('tasks', function($value, $route) {
+    return Task::whereSlug($value)->first();
+});
+Route::bind('projects', function($value, $route) {
+    return Project::whereSlug($value)->first();
+});
