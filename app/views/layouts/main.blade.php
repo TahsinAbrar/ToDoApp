@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>My To-Do App</title>
     <meta name="viewport" content="width=device-width">
+    {{ HTML::style('/css/bootstrap.min.css') }}
+    {{ HTML::style('/css/bootstrap-theme.css') }}
     <style>
         #wrapper {width:960px;max-width:100%;margin:auto}
         .inline {display:inline}
@@ -18,6 +20,7 @@
 <div id='wrapper'>
     <header>
         <h1>My To-Do App</h1>
+        <h3>Keep track Your Work</h3>
     </header>
     <div id="content">
         @if (Session::has('message'))
