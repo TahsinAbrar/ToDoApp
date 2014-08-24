@@ -33,12 +33,15 @@ class ProjectsController extends \BaseController {
 	 * @return Response
 	 */
 // ProjectsController
+
     public function store()
     {
         $input = Input::all();
-        Project::create( $input );
-
-        return Redirect::route('projects.index')->with('message', 'Project created');
+        $project = new Project($input);
+        if ( $project->save() )
+            return Redirect::route('projects.index')->with('message', 'Project created.');
+        else
+            return Redirect::route('projects.create')->withInput()->withErrors( $project->errors() );
     }
 
 
@@ -57,9 +60,9 @@ class ProjectsController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /projects/{id}/edit
+	 * GET /projects/{project}/edit
 	 *
-	 * @param  int  $id
+	 * @param  int  $project
 	 * @return Response
 	 */
 	public function edit(Project $project)
@@ -72,24 +75,26 @@ class ProjectsController extends \BaseController {
 	 * Update the specified resource in storage.
 	 * PUT /projects/{id}
 	 *
-	 * @param  int  $id
+	 * @param  int  $project
 	 * @return Response
 	 */
 
+
     public function update(Project $project)
     {
-        $input = array_except(Input::all(), '_method');
-        $project->update($input);
-
-        return Redirect::route('projects.show', $project->slug)->with('message', 'Project updated.');
+        $input = Input::all();
+        $project->fill($input);
+        if ( $project->updateUniques() )
+            return Redirect::route('projects.show', $project->slug)->with('message', 'Project updated.');
+        else
+            return Redirect::route('projects.edit', array_get($project->getOriginal(), 'slug'))->withInput()->withErrors( $project->errors() );
     }
-
 
 	/**
 	 * Remove the specified resource from storage.
 	 * DELETE /projects/{id}
 	 *
-	 * @param  int  $id
+	 * @param  int  $project
 	 * @return Response
 	 */
 
