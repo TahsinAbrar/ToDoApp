@@ -14,4 +14,11 @@ class WelcomeController extends BaseController {
         'anExampleArraykey'=>'example value'
         ));
     }
+    public function test(){
+        return View::make('welcome.test')
+            ->with(array('hi'=>'||hello how r u||',
+                'hell'=>'||hell||',
+                'anExampleArraykey'=>'example value'
+            ));
+    }
 } 

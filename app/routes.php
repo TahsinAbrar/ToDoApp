@@ -20,11 +20,15 @@ Route::get('welcome/sayhello', 'WelcomeController@sayhello');
 
 Route::get('greeting/sayhi', 'GreetingController@sayhi');
 
+Route::get('welcome/test', 'WelcomeController@test');
+
 Route::resource('projects', 'ProjectsController');
 
+// Provide controller methods with object instead of ID
+Route::model('tasks', 'Task');Route::model('projects', 'Project');
 
 //Route::resource('tasks', 'TasksController');
-Route::resource('projeccts.tasks', 'TasksController');
+Route::resource('projects.tasks', 'TasksController');
 
 Route::bind('tasks', function($value, $route) {
     return Task::whereSlug($value)->first();
