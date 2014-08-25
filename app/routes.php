@@ -25,7 +25,8 @@ Route::get('welcome/test', 'WelcomeController@test');
 Route::resource('projects', 'ProjectsController');
 
 // Provide controller methods with object instead of ID
-Route::model('tasks', 'Task');Route::model('projects', 'Project');
+Route::model('tasks', 'Task');
+Route::model('projects', 'Project');
 
 //Route::resource('tasks', 'TasksController');
 Route::resource('projects.tasks', 'TasksController');

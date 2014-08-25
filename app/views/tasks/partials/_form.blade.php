@@ -22,6 +22,11 @@
     </li>
 
     <li>
+        {{ Form::label('image', 'Image:') }}
+        {{ Form::file('image') }}
+    </li>
+
+    <li>
         {{ Form::submit($submit_text) }}
     </li>
 </ul>
