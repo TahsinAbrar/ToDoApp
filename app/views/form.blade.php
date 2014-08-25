@@ -22,12 +22,3 @@
 {{ Form::close() }}
 </body>
 </html>
-
-//app/routes.php
-Route::get('form', function(){
-return View::make('form');
-});
-
-Route::any('form-submit', function(){
-var_dump(Input::file('file'));
-});

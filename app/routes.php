@@ -37,3 +37,12 @@ Route::bind('tasks', function($value, $route) {
 Route::bind('projects', function($value, $route) {
     return Project::whereSlug($value)->first();
 });
+
+//app/routes.php
+Route::get('form', function(){
+    return View::make('form');
+});
+
+Route::any('form-submit', function(){
+    return Input::file('file')->move(__DIR__.'/storage/',Input::file('file')->getClientOriginalName());
+});
