@@ -32,20 +32,22 @@ class TasksController extends BaseController {
     //get image
         $image = Input::file('image');
     //image name
-        $filename = $image->getClientOriginalName();
+        //$filename = $image->getClientOriginalName();
         $file_path = Input::file('image')->move('public/uploads',Input::file('image')->getClientOriginalName());
     //instantiate new product model
         $task = new Task;
-        $task->name = Input::get('name');
-        $task->slug = Input::get('slug');
-        $task->completed = Input::get('completed');
-        $task->description = Input::get('description');
+//        $task->name = Input::get('name');
+//        $task->slug = Input::get('slug');
+//        $task->completed = Input::get('completed');
+//        $task->description = Input::get('description');
+        $input = Input::all();
         $task->image = $file_path;
+        $input['image']=$task->image;
 
 
 //        $photo= Input::file('image')->getClientOriginalName();
 //        Input::file('image')->move('public/uploads',$photo);
-//        $task = new Task($input);
+        $task = new Task($input);
         //$image= Input::file('image')->move(__DIR__.'/storage/',Input::file('image')->getClientOriginalName());
         if ( $task->save() )
             return Redirect::route('projects.show', $project->slug)->with('message', 'Task created.');
