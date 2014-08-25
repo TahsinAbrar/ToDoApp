@@ -23,7 +23,7 @@ class ProjectsController extends \BaseController {
 	public function create()
 	{
         // return View::make('projects.index');
-        $this->layout->content = View::make('projects.create', compact('project'));;
+        $this->layout->content = View::make('projects.create', compact('project'));
 	}
 
 	/**

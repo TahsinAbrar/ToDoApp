@@ -46,3 +46,7 @@ Route::get('form', function(){
 Route::any('form-submit', function(){
     return Input::file('file')->move(__DIR__.'/storage/',Input::file('file')->getClientOriginalName());
 });
+
+Route::get('welcome/fileupload', function(){
+    return View::make('welcome/fileUpload', 'WelcomeController@fileupload');
+});

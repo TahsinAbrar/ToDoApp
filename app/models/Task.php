@@ -5,7 +5,7 @@ class Task extends \Eloquent {
 //        'project' => array(self::BELONGS_TO, 'Project')
 //    );
     public static $sluggable = array();
-	protected $fillable = ['project_id', 'name', 'slug', 'completed', 'description'];
+	protected $fillable = ['project_id', 'name', 'slug', 'completed', 'description','image'];
 
     public static $rules = array(
         'name'			=> 'required|min:4',
